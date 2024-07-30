@@ -20,11 +20,12 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private int points;
-    private int wins;
-    private int draws;
-    private int losses;
-    private int goalsFor;
-    private int goalsAgainst;
-    private String groupName; // Novo campo para o grupo
+    private int points = 0;
+    private int wins =0;
+    private int draws =0;
+    private int losses =0;
+    private int goalsFor =0;
+    private int goalsAgainst = 0;
+    private String groupName; // grupo
+    private int gamesPlayed =0; // quantidade de jogos
 }

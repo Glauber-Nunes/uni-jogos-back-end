@@ -1,8 +1,11 @@
 package com.gsoftware.uniJogos.controller.v1.match;
 
+import com.gsoftware.uniJogos.controller.v1.match.dto.MatchGenerationRequestDTO;
 import com.gsoftware.uniJogos.model.Match;
 import com.gsoftware.uniJogos.service.MatchService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +18,14 @@ public class MatchController {
 
     private final MatchService matchService;
 
-    @GetMapping
+
     public List<Match> getAllMatches() {
         return matchService.getAllMatches();
+    }
+
+    @GetMapping("/find-all")
+    public ResponseEntity<List<Match>> findAll(){
+     return ResponseEntity.status(HttpStatus.OK).body(matchService.findAll());
     }
 
     @PostMapping
@@ -45,8 +53,8 @@ public class MatchController {
         matchService.deleteMatch(id);
     }
 
-    @PostMapping("/generate/{groupName}")
-    public List<Match> generateMatches(@PathVariable String groupName) {
-        return matchService.generateMatches(groupName);
+    @PostMapping("/generate")
+    public List<Match> generateMatches(@RequestBody MatchGenerationRequestDTO request) {
+        return matchService.generateMatches(request.getGroupName(), request.getStartDateTime(), request.getEndDateTime());
     }
 }
