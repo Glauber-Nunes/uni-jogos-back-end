@@ -1,9 +1,6 @@
 package com.gsoftware.uniJogos.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +14,10 @@ import lombok.Setter;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_name")
+    @SequenceGenerator(name = "sequence_name", sequenceName = "your_sequence", allocationSize = 1)
     private Long id;
+
     private String name;
     private int points = 0;
     private int wins =0;

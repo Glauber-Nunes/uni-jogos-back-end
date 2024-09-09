@@ -6,29 +6,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+import java.time.LocalDate;
+
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class EquipeGrupo {
+@AllArgsConstructor
+@Entity
+public class Noticia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_name")
     @SequenceGenerator(name = "sequence_name", sequenceName = "your_sequence", allocationSize = 1)
     private Long id;
 
+    private String titulo;
+    @Column(length = 5000)
+    private String conteudo;
+    @Column(length = 5000)
+    private String imagemUrl; // URL da imagem associada à notícia
 
-    @ManyToOne
-    @JoinColumn(name = "grupo_id")
-    private Grupo grupo;
+    private LocalDate dataPublicacao;
 
-    @ManyToOne
-    @JoinColumn(name = "equipe_id")
-    private Equipe equipe;
-
-    private int vitorias;
-    private int empates;
-    private int derrotas;
-    private int pontos;
 }

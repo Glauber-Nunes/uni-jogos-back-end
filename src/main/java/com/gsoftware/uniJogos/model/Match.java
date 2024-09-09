@@ -17,8 +17,10 @@ import java.time.LocalDateTime;
 public class Match {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_name")
+    @SequenceGenerator(name = "sequence_name", sequenceName = "your_sequence", allocationSize = 1)
     private Long id;
+
     @ManyToOne
     private Team homeTeam;
     @ManyToOne

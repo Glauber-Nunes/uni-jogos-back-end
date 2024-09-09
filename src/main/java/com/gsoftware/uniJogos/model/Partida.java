@@ -18,8 +18,10 @@ import java.util.List;
 public class Partida {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_name")
+    @SequenceGenerator(name = "sequence_name", sequenceName = "your_sequence", allocationSize = 1)
     private Long id;
+
 
     private LocalDateTime dataHora;
     private String localizacao;
